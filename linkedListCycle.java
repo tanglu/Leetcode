@@ -1,3 +1,5 @@
+
+
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -11,22 +13,17 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
+        public boolean hasCycle(ListNode head) {
         ListNode fast_iter = head;
         ListNode slow_iter = head;
-        while (fast_iter!=null && slow_iter!=null) {
-            ListNode temp = fast_iter.next;
-            if(temp==null) {
-                return false;
-            }
-            fast_iter = temp.next;
+        while (fast_iter!=null && fast_iter.next!=null) {
             slow_iter = slow_iter.next;
+            fast_iter = fast_iter.next.next;
             if (fast_iter==slow_iter) {
-                break;
+                return true;
             }
-        }
-        if(fast_iter!=null&&fast_iter==slow_iter) {
-            return true;
         }
         return false;
+        }
     }
 }
