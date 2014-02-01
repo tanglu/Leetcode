@@ -19,6 +19,7 @@ public class Solution {
             if(str.charAt(i)>'9'||str.charAt(i)<'0') {
                 break;
             }
+            //should rember how to detect the overflow of Integer
             if(result> Integer.MAX_VALUE/10 || (result==Integer.MAX_VALUE/10 && Integer.MAX_VALUE%10 < (str.charAt(i) - '0'))) {
                 if (sign==1)
                     return Integer.MAX_VALUE;
