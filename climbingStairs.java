@@ -8,12 +8,13 @@ public class Solution {
         if(n<=2) {
             return n;
         }
-        int pre = 1;
-        int result = 2;
-         
+        int first = 1;
+        int second = 2;
+        int result;
         for(int i=3;i<=n;i++) {
-            result = pre + result;
-            pre = result - pre;
+            result = first + second;
+            first  = second;
+            second = result;
         }
         return result;
     }
