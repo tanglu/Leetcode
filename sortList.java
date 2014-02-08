@@ -17,7 +17,7 @@ public class Solution {
         }
     	ListNode middle = getMiddleOfList(head);
     	ListNode next   = middle.next;
-    	    middle.next = null;
+    	middle.next = null;
     	return mergeList(sortList(head), sortList(next));
     }
     
