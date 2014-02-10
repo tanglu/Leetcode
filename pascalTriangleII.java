@@ -1,3 +1,5 @@
+//O(N) Space Complexity
+//O(N) Time Complexity
 public class Solution {
     public ArrayList<Integer> getRow(int rowIndex) {
         if(rowIndex<0) {
