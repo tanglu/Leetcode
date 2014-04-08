@@ -1,23 +1,25 @@
 public class Solution {
     
-    void dfs(ArrayList<Integer>num, int target, ArrayList<Integer> array, ArrayList<ArrayList<Integer>> result) {
+    void dfs(int [] num, int start, int target, ArrayList<Integer> array, ArrayList<ArrayList<Integer>> result) {
         if(target==0) {
-            result.add(array);
+            result.add(new ArrayList<Integer>(array));
             return;
         }
         
-        if(num.size()==0||num.get(0)>target) {
+        if(start>=num.length||num[0]>target) {
             return;
         }
-        
-        for(int i=0;i<num.size();i++) {
-            if(num.get(i)<=target) {
-                ArrayList<Integer> newArray = new ArrayList<Integer>(array);
-                newArray.add(num.get(i));
-                ArrayList<Integer> newNum = new ArrayList<Integer>(num);
-                newNum.remove(i);
-                dfs(newNum, target - num.get(i), newArray, result);
+        int i = start;
+        while(i<num.length) {
+            if(num[i]<=target) {
+                array.add(num[i]);
+                dfs(num, i + 1, target - num[i], array, result);
+                array.remove(array.size()-1);
+                while(i<(num.length-1)&&num[i]==num[i+1]) {
+                    i++;
+                }
             }
+            i++;
         }
     }
     
@@ -30,12 +32,7 @@ public class Solution {
              return result;
          }
          Arrays.sort(num);
-         //List<Integer> numList = Arrays.asList(num);  
-         ArrayList<Integer> numList = new ArrayList<Integer>();
-         for(int i=0;i<num.length;i++) {
-             numList.add(num[i]);
-         }
-         dfs(numList,target,array,result); 
+         dfs(num,0, target,array,result); 
          return result;
     }
 }
