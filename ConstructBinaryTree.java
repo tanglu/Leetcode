@@ -9,7 +9,6 @@
  */
 public class Solution {
     
-    
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if(preorder==null&&inorder==null||preorder.length==0) {
             return null;
