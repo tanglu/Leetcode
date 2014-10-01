@@ -1,0 +1,39 @@
+public class Solution {
+    ListNode getLeftNodeFromList(ListNode head) {
+        ListNode next = head;
+        ListNode current = head; 
+        ListNode pre = head;
+
+        while(next!=null) {
+            next = next.next;
+            if(next==null) {
+                break;
+            }
+            next = next.next;
+            if(next==null) {
+                break;
+            }
+            pre = head;
+            head = head.next;
+        }
+        return pre;
+    }
+    
+    
+    public TreeNode sortedListToBST(ListNode head) {
+        if(head==null) {
+            return null;
+        }
+        if(head.next==null) {
+            return new TreeNode(head.val);
+        }
+        
+        ListNode left = getLeftNodeFromList(head);
+        ListNode mid = left.next;
+        TreeNode root = new TreeNode(mid.val);
+        left.next     = null;
+        root.left     = sortedListToBST(head);
+        root.right    = sortedListToBST(mid.next);
+        return root;
+    }
+}
