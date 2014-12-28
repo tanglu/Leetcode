@@ -1,0 +1,51 @@
+public class Solution {
+    //如果两个链表的最后一个节点相同，则一定存在公共节点
+    //长度长的链表先走几步，让两个链表对齐，之后开始一起遍历直到找到第一个公共节点
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA==null||headB==null) {
+            return null;
+        }
+        int lengthA = 1;
+        int lengthB = 1;
+        
+        ListNode iterA = headA;
+        while(iterA.next!=null) {
+            iterA = iterA.next;
+            lengthA++;
+        }
+        
+        ListNode iterB = headB;
+        while(iterB.next!=null) {
+            iterB = iterB.next;
+            lengthB++;
+        }
+        
+        if(iterA!=iterB) {
+            return null;
+        }
+        
+        if(lengthA<lengthB) {
+            int tmp = lengthA;
+            lengthA = lengthB;
+            lengthB = tmp;
+        
+            ListNode tmpListNode = headA;
+            headA = headB;
+            headB = tmpListNode;
+        }
+        
+        
+        int tmp = lengthA - lengthB;
+        while(tmp>0) {
+            headA = headA.next;
+            tmp--;
+        }
+        
+        while(headA!=headB) {
+            headA = headA.next;
+            headB = headB.next;
+        }
+        
+        return headA;
+    }
+}
